@@ -365,10 +365,56 @@ const input=document.getElementById("search");
 const cards=document.querySelectorAll(".card");
 ...
 
-function openGame(){
-    document.getElementById("gameMenu").style.display="block";
+function gameSuit() {
+    const pilihan = ["🪨 Batu", "📄 Kertas", "✂️ Gunting"];
+
+    let pemain = prompt("Pilih:\n1. Batu\n2. Kertas\n3. Gunting");
+
+    let user;
+
+    if (pemain == "1") {
+        user = pilihan[0];
+    } else if (pemain == "2") {
+        user = pilihan[1];
+    } else if (pemain == "3") {
+        user = pilihan[2];
+    } else {
+        alert("Pilihan tidak valid!");
+        return;
+    }
+
+    let komputer = pilihan[Math.floor(Math.random() * 3)];
+
+    let hasil = "";
+
+    if (user === komputer) {
+        hasil = "🤝 Seri!";
+    } else if (
+        (user === pilihan[0] && komputer === pilihan[2]) ||
+        (user === pilihan[1] && komputer === pilihan[0]) ||
+        (user === pilihan[2] && komputer === pilihan[1])
+    ) {
+        hasil = "🎉 Kamu Menang!";
+    } else {
+        hasil = "😢 Kamu Kalah!";
+    }
+
+    document.getElementById("hasilGame").innerHTML =
+        "👤 Kamu: " + user +
+        "<br>🤖 Komputer: " + komputer +
+        "<br><br><b>" + hasil + "</b>";
 }
 
+function openGame() {
+    const menu = document.getElementById("gameMenu");
+
+    if (menu.style.display === "none" || menu.style.display === "") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+    
 function gameTebak(){
     let angka=Math.floor(Math.random()*10)+1;
     let tebak=prompt("Tebak angka 1-10");
