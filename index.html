@@ -214,6 +214,18 @@ box-shadow:0 0 15px #00e5ff;
     box-shadow:0 0 25px #25D366;
 }
 
+#gameBtn{
+    padding:15px 35px;
+    border:none;
+    border-radius:15px;
+    background:#a855f7;
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 20px #a855f7;
+    }
+    
 </style>
 
 </head>
@@ -232,7 +244,7 @@ Jumlah Data : <span id="jumlah"></span>
 <div class="nama">👨 Sultan</div>
 <div class="badge">💦 Hobi Nyoli</div>
 <div class="desc">
-Taya Suka pura-pura ke toilet Aslinya Nyoli.
+Sultan Suka pura-pura ke toilet Aslinya Nyoli.
 </div>
 </div>
 
@@ -281,6 +293,19 @@ Web ini aja di buat gwee wlee.
     </a>
 </div>
 
+<div style="text-align:center;margin-top:20px;">
+    <button id="gameBtn" onclick="openGame()">🎮 Mini Game</button>
+</div>
+
+<div id="gameMenu" style="display:none;text-align:center;margin-top:20px;">
+    <h2>🎮 Mini Game</h2>
+
+    <button onclick="gameTebak()">🎯 Tebak Angka</button>
+    <button onclick="gameSuit()">✂ Batu Gunting Kertas</button>
+
+    <p id="hasilGame"></p>
+</div>
+    
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <!-- Musik -->
@@ -339,6 +364,21 @@ function startWebsite() {
 const input=document.getElementById("search");
 const cards=document.querySelectorAll(".card");
 ...
+
+function openGame(){
+    document.getElementById("gameMenu").style.display="block";
+}
+
+function gameTebak(){
+    let angka=Math.floor(Math.random()*10)+1;
+    let tebak=prompt("Tebak angka 1-10");
+
+    if(tebak==angka){
+        document.getElementById("hasilGame").innerHTML="🎉 Benar!";
+    }else{
+        document.getElementById("hasilGame").innerHTML="❌ Salah! Angkanya "+angka;
+    }
+}    
 </script>
 
 </body>
